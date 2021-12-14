@@ -1,0 +1,174 @@
+definitions:
+  main.DoM2M:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      mermsisdn1:
+        type: string
+      mermsisdn2:
+        type: string
+      partnID:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.DoM2MResponse:
+    properties:
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      systemID:
+        type: string
+      transID:
+        type: string
+    type: object
+  main.DoM2S:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      mermsisdn:
+        type: string
+      partnID:
+        type: string
+      subsmsisdn:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.DoM2SResponse:
+    properties:
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      systemID:
+        type: string
+      transID:
+        type: string
+    type: object
+  main.DoS2M:
+    properties:
+      amount:
+        type: string
+      callbackurl:
+        type: string
+      currency:
+        type: string
+      mermsisdn:
+        type: string
+      messageS2m:
+        type: string
+      partnID:
+        type: string
+      subsmsisdn:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.DoS2MResponse:
+    properties:
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      systemID:
+        type: string
+      transID:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/dom2m:
+    post:
+      consumes:
+      - application/json
+      description: Perform a Merchant to Merchant Transaction.
+      parameters:
+      - description: DoM2M
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/main.DoM2M'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.DoM2MResponse'
+      summary: Do M2M Transaction
+      tags:
+      - login
+  /api/v1/dom2s:
+    post:
+      consumes:
+      - application/json
+      description: Perform a Merchant to Subscriber transaction.
+      parameters:
+      - description: DoM2S
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/main.DoM2S'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.DoM2SResponse'
+      summary: Do M2S Transaction.
+      tags:
+      - login
+  /api/v1/dos2m:
+    post:
+      consumes:
+      - application/json
+      description: Perform a Subscriber to Merchant Transaction
+      parameters:
+      - description: DoS2M
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/main.DoS2M'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.DoS2MResponse'
+      summary: Do an S2M transaction.
+      tags:
+      - login
+  /swagger.json:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get API Swagger Definition
+      tags:
+      - internal
+swagger: "2.0"
