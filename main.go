@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	_ "github.com/tralahm/orangemoney/docs"
+	_ "./docs"
 
-	"github.com/tralahm/orangemoney/orangesdk"
+	"./orangesdk"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
