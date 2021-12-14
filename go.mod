@@ -1,4 +1,4 @@
-module github.com/TralahM/orangemoney
+module github.com/tralahm/orangemoney
 
 go 1.17
 
