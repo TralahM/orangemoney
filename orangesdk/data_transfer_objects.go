@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io"
 	"log"
+	"os"
 )
 
 // Request interface is a Data Transfer Object interface
@@ -32,14 +33,15 @@ type DoM2S struct {
 
 // XML Writes the DoM2S struct info into xml
 func (data *DoM2S) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dom2s").Parse(m2sreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -139,14 +141,15 @@ type DoS2M struct {
 
 // XML Writes the DoS2M struct info into xml
 func (data *DoS2M) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dos2m").Parse(s2mreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -288,14 +291,15 @@ type DoS2S struct {
 
 // XML Writes the DoS2S struct info into xml
 func (data *DoS2S) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dos2s").Parse(s2sreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -375,14 +379,15 @@ type DoM2M struct {
 
 // XML Writes the DoM2M struct info into xml
 func (data *DoM2M) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dom2m").Parse(m2mreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -458,14 +463,15 @@ type TcheckBal struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *TcheckBal) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("tcheckbal").Parse(tcheckbalreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -538,14 +544,15 @@ type DoCheckTrans struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *DoCheckTrans) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dochecktrans").Parse(checktransreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -618,14 +625,15 @@ type DoCallback struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *DoCallback) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("docallback").Parse(callbackreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
@@ -701,14 +709,15 @@ type SendSMS struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *SendSMS) XML(wr io.Writer) error {
+	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("sendsms").Parse(sendsmsreq)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return err
 	}
 	return nil
