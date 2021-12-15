@@ -10,7 +10,7 @@ import (
 // BuildRequest is a helper function to quickly build Request objects
 func BuildRequest(rt RType, jsonBytes []byte) Request {
 	logger := log.New(os.Stdout, "drcorangefactory: ", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.Println(rt.String(), jsonBytes)
+	logger.Println(rt.String(), string(jsonBytes))
 	switch rt {
 	case RTS2M:
 		var o DoS2M
@@ -68,7 +68,7 @@ func BuildRequest(rt RType, jsonBytes []byte) Request {
 // BuildResponse is a helper function to quickly build Response objects
 func BuildResponse(rt RType, xmlBytes []byte) Response {
 	logger := log.New(os.Stdout, "drcorangefactory: ", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.Println(rt.String(), xmlBytes)
+	logger.Println(rt.String(), string(xmlBytes))
 	switch rt {
 	case RTS2M:
 		var o DoS2MResponse
