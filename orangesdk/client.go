@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 // Client interface
@@ -61,6 +62,7 @@ type APIClient struct {
 	addr       string
 	remoteIP   string
 	remotePort string
+	logger     *log.Logger
 }
 
 // address returns the remote address of the orange money service.
@@ -78,25 +80,27 @@ func (sdk *APIClient) Do(r *http.Request) (*http.Response, error) {
 func (sdk *APIClient) Post(data io.Reader) ([]byte, error) {
 	request, err := http.NewRequest(http.MethodPost, sdk.address(), data)
 	if err != nil {
-		log.Fatal(err)
+		sdk.logger.Fatalln(err)
 	}
 	resp, err := sdk.Do(request)
 	if err != nil {
-		log.Fatal(err)
+		sdk.logger.Fatalln(err)
 	}
 	resbytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		sdk.logger.Fatalln(err)
 	}
 	return resbytes, err
 }
 
 // NewClient returns a new APIClient
 func NewClient(authToken, partnerID, partnerName, merchantMSISDN, remoteIP, remotePort string) *APIClient {
+	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile)
 	return &APIClient{
 		token: authToken, partnID: partnerID,
 		partnName: partnerName, mermsisdn: merchantMSISDN,
 		remoteIP: remoteIP, remotePort: remotePort,
+		logger: logger,
 		cli: Decorate(
 			http.DefaultClient,
 			Header("Accept", "application/xml,text/xml"),

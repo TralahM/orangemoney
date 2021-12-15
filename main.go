@@ -273,6 +273,7 @@ func (ipg *IpgHandler) Swagger(w http.ResponseWriter, req *http.Request) {
 func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orangesdk.Response) {
 	err := payload.JSON(w)
 	if err != nil {
+		ipg.logger.Fatalln(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
 		return
