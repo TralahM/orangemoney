@@ -250,7 +250,7 @@ type IpgHandler struct {
 // NewIpgHandler return an IpgHandler.
 func NewIpgHandler() *IpgHandler {
 	logger := log.New(os.Stdout, "drcorangeproxy: ", log.Ldate|log.Ltime|log.Lshortfile)
-	cli := orangesdk.NewClient("Bearer c0d9acb4-9e88-5030-83e2-456916dc25dr", "1182", "GLORESVENT", "0896643349", "41.77.222.184", "8088")
+	cli := orangesdk.NewClient("Bearer c0d9acb4-9e88-5030-83e2-456916dc25dr", "1182", "GLORESVENT", "0896643349", "41.77.223.184", "8088")
 	return &IpgHandler{
 		logger: logger,
 		cli:    cli,
