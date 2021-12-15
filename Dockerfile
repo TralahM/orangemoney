@@ -13,7 +13,7 @@ ENV PORT 8080
 EXPOSE 8080
 WORKDIR /root/
 COPY --from=builder /go/src/app .
-COPY --from=builder /go/bin/drcorangeproxy /bin/drcorangeproxy
+COPY --from=builder /go/bin/orangemoney /bin/drcorangeproxy
 COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENTRYPOINT ["drcorangeproxy"]
