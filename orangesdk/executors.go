@@ -2,7 +2,6 @@ package orangesdk
 
 import (
 	"bytes"
-	"log"
 )
 
 // RType defines a Request Type
@@ -64,7 +63,7 @@ func (sdk *APIClient) Execute(r Request) Response {
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
-		log.Fatalln(err)
+		sdk.logger.Fatalln(err)
 	}
 	return BuildResponse(r.Type(), xmlBytes)
 }
