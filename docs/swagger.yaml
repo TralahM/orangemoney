@@ -1,4 +1,50 @@
 definitions:
+  main.DoCallback:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      mermsisdn:
+        type: string
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      subsmsisdn:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.DoCallbackResponse:
+    properties:
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+    type: object
+  main.DoCheckTrans:
+    properties:
+      mermsisdn:
+        type: string
+      partnID:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.DoCheckTransResponse:
+    properties:
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      transID:
+        type: string
+    type: object
   main.DoM2M:
     properties:
       amount:
@@ -87,9 +133,77 @@ definitions:
       transID:
         type: string
     type: object
+  main.TcheckBal:
+    properties:
+      currency:
+        type: string
+      partnID:
+        type: string
+      subsmsisdn:
+        type: string
+      transid:
+        type: string
+    type: object
+  main.TcheckBalResponse:
+    properties:
+      balance:
+        type: string
+      partnID:
+        type: string
+      resultCode:
+        type: string
+      resultDesc:
+        type: string
+      transID:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
+  /api/v1/docallback:
+    post:
+      consumes:
+      - application/json
+      description: Accept a callback request
+      parameters:
+      - description: DoCallback
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/main.DoCallback'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/main.DoCallbackResponse'
+      summary: Accept a callback request
+      tags:
+      - Callbacks
+  /api/v1/dochecktrans:
+    post:
+      consumes:
+      - application/json
+      description: Check the balance of a specified account.
+      parameters:
+      - description: DoCheckTrans
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/main.DoCheckTrans'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/main.DoCheckTransResponse'
+      summary: Do a Check Balance transaction.
+      tags:
+      - CheckTransaction
   /api/v1/dom2m:
     post:
       consumes:
@@ -98,20 +212,20 @@ paths:
       parameters:
       - description: DoM2M
         in: body
-        name: credentials
+        name: payload
         required: true
         schema:
           $ref: '#/definitions/main.DoM2M'
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "202":
+          description: Accepted
           schema:
             $ref: '#/definitions/main.DoM2MResponse'
       summary: Do M2M Transaction
       tags:
-      - login
+      - B2B
   /api/v1/dom2s:
     post:
       consumes:
@@ -120,20 +234,20 @@ paths:
       parameters:
       - description: DoM2S
         in: body
-        name: credentials
+        name: payload
         required: true
         schema:
           $ref: '#/definitions/main.DoM2S'
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "202":
+          description: Accepted
           schema:
             $ref: '#/definitions/main.DoM2SResponse'
       summary: Do M2S Transaction.
       tags:
-      - login
+      - B2C
   /api/v1/dos2m:
     post:
       consumes:
@@ -142,20 +256,42 @@ paths:
       parameters:
       - description: DoS2M
         in: body
-        name: credentials
+        name: payload
         required: true
         schema:
           $ref: '#/definitions/main.DoS2M'
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "202":
+          description: Accepted
           schema:
             $ref: '#/definitions/main.DoS2MResponse'
       summary: Do an S2M transaction.
       tags:
-      - login
+      - C2B
+  /api/v1/tcheckbal:
+    post:
+      consumes:
+      - application/json
+      description: Check the balance of a specified account.
+      parameters:
+      - description: TcheckBal
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/main.TcheckBal'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/main.TcheckBalResponse'
+      summary: Do a Check Balance transaction.
+      tags:
+      - Balance
   /swagger.json:
     get:
       consumes:

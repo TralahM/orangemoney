@@ -4,6 +4,74 @@
         "contact": {}
     },
     "paths": {
+        "/api/v1/docallback": {
+            "post": {
+                "description": "Accept a callback request",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Callbacks"
+                ],
+                "summary": "Accept a callback request",
+                "parameters": [
+                    {
+                        "description": "DoCallback",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.DoCallback"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/main.DoCallbackResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/dochecktrans": {
+            "post": {
+                "description": "Check the balance of a specified account.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CheckTransaction"
+                ],
+                "summary": "Do a Check Balance transaction.",
+                "parameters": [
+                    {
+                        "description": "DoCheckTrans",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.DoCheckTrans"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/main.DoCheckTransResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/dom2m": {
             "post": {
                 "description": "Perform a Merchant to Merchant Transaction.",
@@ -14,13 +82,13 @@
                     "application/json"
                 ],
                 "tags": [
-                    "login"
+                    "B2B"
                 ],
                 "summary": "Do M2M Transaction",
                 "parameters": [
                     {
                         "description": "DoM2M",
-                        "name": "credentials",
+                        "name": "payload",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -29,8 +97,8 @@
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "202": {
+                        "description": "Accepted",
                         "schema": {
                             "$ref": "#/definitions/main.DoM2MResponse"
                         }
@@ -48,13 +116,13 @@
                     "application/json"
                 ],
                 "tags": [
-                    "login"
+                    "B2C"
                 ],
                 "summary": "Do M2S Transaction.",
                 "parameters": [
                     {
                         "description": "DoM2S",
-                        "name": "credentials",
+                        "name": "payload",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -63,8 +131,8 @@
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "202": {
+                        "description": "Accepted",
                         "schema": {
                             "$ref": "#/definitions/main.DoM2SResponse"
                         }
@@ -82,13 +150,13 @@
                     "application/json"
                 ],
                 "tags": [
-                    "login"
+                    "C2B"
                 ],
                 "summary": "Do an S2M transaction.",
                 "parameters": [
                     {
                         "description": "DoS2M",
-                        "name": "credentials",
+                        "name": "payload",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -97,10 +165,44 @@
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "202": {
+                        "description": "Accepted",
                         "schema": {
                             "$ref": "#/definitions/main.DoS2MResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tcheckbal": {
+            "post": {
+                "description": "Check the balance of a specified account.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Balance"
+                ],
+                "summary": "Do a Check Balance transaction.",
+                "parameters": [
+                    {
+                        "description": "TcheckBal",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.TcheckBal"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/main.TcheckBalResponse"
                         }
                     }
                 }
@@ -131,6 +233,77 @@
         }
     },
     "definitions": {
+        "main.DoCallback": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "mermsisdn": {
+                    "type": "string"
+                },
+                "partnID": {
+                    "type": "string"
+                },
+                "resultCode": {
+                    "type": "string"
+                },
+                "resultDesc": {
+                    "type": "string"
+                },
+                "subsmsisdn": {
+                    "type": "string"
+                },
+                "transid": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.DoCallbackResponse": {
+            "type": "object",
+            "properties": {
+                "partnID": {
+                    "type": "string"
+                },
+                "resultCode": {
+                    "type": "string"
+                },
+                "resultDesc": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.DoCheckTrans": {
+            "type": "object",
+            "properties": {
+                "mermsisdn": {
+                    "type": "string"
+                },
+                "partnID": {
+                    "type": "string"
+                },
+                "transid": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.DoCheckTransResponse": {
+            "type": "object",
+            "properties": {
+                "resultCode": {
+                    "type": "string"
+                },
+                "resultDesc": {
+                    "type": "string"
+                },
+                "transID": {
+                    "type": "string"
+                }
+            }
+        },
         "main.DoM2M": {
             "type": "object",
             "properties": {
@@ -259,6 +432,43 @@
                     "type": "string"
                 },
                 "systemID": {
+                    "type": "string"
+                },
+                "transID": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.TcheckBal": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "partnID": {
+                    "type": "string"
+                },
+                "subsmsisdn": {
+                    "type": "string"
+                },
+                "transid": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.TcheckBalResponse": {
+            "type": "object",
+            "properties": {
+                "balance": {
+                    "type": "string"
+                },
+                "partnID": {
+                    "type": "string"
+                },
+                "resultCode": {
+                    "type": "string"
+                },
+                "resultDesc": {
                     "type": "string"
                 },
                 "transID": {

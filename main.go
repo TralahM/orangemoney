@@ -214,8 +214,9 @@ func main() {
 	r.Post("/api/v1/dos2m", handler.Dos2m)
 	r.Post("/api/v1/dom2m", handler.Dom2m)
 	r.Post("/api/v1/dom2s", handler.Dom2s)
-	// r.Post("/api/v2/login", handler.Login)
-	// r.Post("/api/v1/c2b", handler.C2B)
+	r.Post("/api/v1/docallback", handler.Docallback)
+	r.Post("/api/v1/dochecktrans", handler.DoCheckTrans)
+	r.Post("/api/v1/tcheckbal", handler.TcheckBal)
 	// r.Post("/api/v1/b2c", handler.B2C)
 	// r.Post("/api/v1/vodacash_c2b_callback", handler.C2BCallback)
 	// r.Post("/api/v1/vodacash_b2c_callback", handler.B2CCallback)
@@ -283,11 +284,11 @@ func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orange
 // Dos2m godoc
 // @Summary Do an S2M transaction.
 // @Description Perform a Subscriber to Merchant Transaction
-// @Tags login
+// @Tags C2B
 // @Accept json
 // @Produce json
 // @Param payload body DoS2M true "DoS2M"
-// @Success 201 {object} DoS2MResponse
+// @Success 202 {object} DoS2MResponse
 // @Router /api/v1/dos2m [post]
 func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
@@ -302,14 +303,79 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 
 }
 
+// DoCallback godoc
+// @Summary Accept a callback request
+// @Description Accept a callback request
+// @Tags Callbacks
+// @Accept json
+// @Produce json
+// @Param payload body DoCallback true "DoCallback"
+// @Success 202 {object} DoCallbackResponse
+// @Router /api/v1/docallback [post]
+func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		ipg.logger.Printf("Error reading body: %v\n", err)
+		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
+		return
+	}
+	rq := orangesdk.BuildRequest(orangesdk.RTCBK, body)
+	var xreq orangesdk.Response = ipg.cli.Callback(rq)
+	ipg.respond(w, 202, xreq)
+
+}
+
+// DoCheckTrans godoc
+// @Summary Do a Check Balance transaction.
+// @Description Check the balance of a specified account.
+// @Tags CheckTransaction
+// @Accept json
+// @Produce json
+// @Param payload body DoCheckTrans true "DoCheckTrans"
+// @Success 202 {object} DoCheckTransResponse
+// @Router /api/v1/dochecktrans [post]
+func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		ipg.logger.Printf("Error reading body: %v\n", err)
+		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
+		return
+	}
+	rq := orangesdk.BuildRequest(orangesdk.RTCHKTXN, body)
+	var xreq orangesdk.Response = ipg.cli.CheckTrans(rq)
+	ipg.respond(w, 202, xreq)
+}
+
+// TcheckBal godoc
+// @Summary Do a Check Balance transaction.
+// @Description Check the balance of a specified account.
+// @Tags Balance
+// @Accept json
+// @Produce json
+// @Param payload body TcheckBal true "TcheckBal"
+// @Success 202 {object} TcheckBalResponse
+// @Router /api/v1/tcheckbal [post]
+func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		ipg.logger.Printf("Error reading body: %v\n", err)
+		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
+		return
+	}
+	rq := orangesdk.BuildRequest(orangesdk.RTCHKBAL, body)
+	var xreq orangesdk.Response = ipg.cli.CheckBal(rq)
+	ipg.respond(w, 202, xreq)
+
+}
+
 // Dom2s godoc
 // @Summary Do M2S Transaction.
 // @Description Perform a Merchant to Subscriber transaction.
-// @Tags login
+// @Tags B2C
 // @Accept json
 // @Produce json
 // @Param payload body DoM2S true "DoM2S"
-// @Success 201 {object} DoM2SResponse
+// @Success 202 {object} DoM2SResponse
 // @Router /api/v1/dom2s [post]
 func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
@@ -327,11 +393,11 @@ func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 // Dom2m godoc
 // @Summary Do M2M Transaction
 // @Description Perform a Merchant to Merchant Transaction.
-// @Tags login
+// @Tags B2B
 // @Accept json
 // @Produce json
 // @Param payload body DoM2M true "DoM2M"
-// @Success 201 {object} DoM2MResponse
+// @Success 202 {object} DoM2MResponse
 // @Router /api/v1/dom2m [post]
 func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
