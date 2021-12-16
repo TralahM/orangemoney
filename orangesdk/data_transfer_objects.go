@@ -85,7 +85,7 @@ type DoM2SResponse struct {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoM2SResponse) JSON(wr io.Writer) error {
+func (r *DoM2SResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -95,7 +95,7 @@ func (r DoM2SResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r TcheckBalResponse) JSON(wr io.Writer) error {
+func (r *TcheckBalResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -195,7 +195,7 @@ type DoS2MResponse struct {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoS2MResponse) JSON(wr io.Writer) error {
+func (r *DoS2MResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -205,7 +205,7 @@ func (r DoS2MResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoM2MResponse) JSON(wr io.Writer) error {
+func (r *DoM2MResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -215,7 +215,7 @@ func (r DoM2MResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoS2SResponse) JSON(wr io.Writer) error {
+func (r *DoS2SResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -225,7 +225,7 @@ func (r DoS2SResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoCallbackResponse) JSON(wr io.Writer) error {
+func (r *DoCallbackResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -235,7 +235,7 @@ func (r DoCallbackResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r DoCheckTransResponse) JSON(wr io.Writer) error {
+func (r *DoCheckTransResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
@@ -245,7 +245,7 @@ func (r DoCheckTransResponse) JSON(wr io.Writer) error {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r SendSMSResponse) JSON(wr io.Writer) error {
+func (r *SendSMSResponse) JSON(wr io.Writer) error {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return err
