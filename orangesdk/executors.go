@@ -83,7 +83,7 @@ func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -100,7 +100,7 @@ func (sdk *APIClient) M2S(r Request) *m2sRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -117,7 +117,7 @@ func (sdk *APIClient) M2M(r Request) *m2mRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -134,7 +134,7 @@ func (sdk *APIClient) Callback(r Request) *callbackurlRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -151,7 +151,7 @@ func (sdk *APIClient) CheckBal(r Request) *checkbalanceRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -168,7 +168,7 @@ func (sdk *APIClient) CheckTrans(r Request) *checktransactionstatusRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }
 
@@ -185,6 +185,6 @@ func (sdk *APIClient) SendSMS(r Request) *sendsmsRESPONSE {
 		sdk.logger.Fatal(err)
 	}
 	sdk.logger.Printf("%s\n", string(xmlBytes))
-	sdk.logger.Printf("%#v\n", o)
+
 	return &o
 }

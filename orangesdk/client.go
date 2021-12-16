@@ -96,7 +96,7 @@ func (sdk *APIClient) Post(data io.Reader) ([]byte, error) {
 
 // NewClient returns a new APIClient
 func NewClient(authToken, remoteIP, remotePort string) *APIClient {
-	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags)
+	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile)
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
