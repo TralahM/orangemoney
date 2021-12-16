@@ -2,6 +2,8 @@ package orangesdk
 
 import (
 	"bytes"
+	"encoding/xml"
+	"os"
 )
 
 // RType defines a Request Type
@@ -69,55 +71,113 @@ func (sdk *APIClient) Execute(r Request) Response {
 }
 
 // S2M performs a subscriber to merchant operation.
-func (sdk *APIClient) S2M(r Request) Response {
-	x := sdk.Execute(r)
-	return x
+func (sdk *APIClient) S2M(r Request) *DoS2MResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o DoS2MResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // M2S performs a merchant to subscriber operation.
-func (sdk *APIClient) M2S(r Request) DoM2SResponse {
-	var res DoM2SResponse
-	x := sdk.Execute(r)
-	res = x.(DoM2SResponse)
-	return res
+func (sdk *APIClient) M2S(r Request) *DoM2SResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o DoM2SResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // M2M performs a merchant to merchant operation.
-func (sdk *APIClient) M2M(r Request) DoM2MResponse {
-	var res DoM2MResponse
-	x := sdk.Execute(r)
-	res = x.(DoM2MResponse)
-	return res
+func (sdk *APIClient) M2M(r Request) *DoM2MResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o DoM2MResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // Callback performs a webservice callbackurl on a transaction.
-func (sdk *APIClient) Callback(r Request) DoCallbackResponse {
-	var res DoCallbackResponse
-	x := sdk.Execute(r)
-	res = x.(DoCallbackResponse)
-	return res
+func (sdk *APIClient) Callback(r Request) *DoCallbackResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o DoCallbackResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // CheckBal checks the balance.
-func (sdk *APIClient) CheckBal(r Request) TcheckBalResponse {
-	var res TcheckBalResponse
-	x := sdk.Execute(r)
-	res = x.(TcheckBalResponse)
-	return res
+func (sdk *APIClient) CheckBal(r Request) *TcheckBalResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o TcheckBalResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // CheckTrans checks the status of a completed transaction.
-func (sdk *APIClient) CheckTrans(r Request) DoCheckTransResponse {
-	var res DoCheckTransResponse
-	x := sdk.Execute(r)
-	res = x.(DoCheckTransResponse)
-	return res
+func (sdk *APIClient) CheckTrans(r Request) *DoCheckTransResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o DoCheckTransResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
 
 // SendSMS send an sms message to a specified subscriber.
-func (sdk *APIClient) SendSMS(r Request) SendSMSResponse {
-	var res SendSMSResponse
-	x := sdk.Execute(r)
-	res = x.(SendSMSResponse)
-	return res
+func (sdk *APIClient) SendSMS(r Request) *SendSMSResponse {
+	var data bytes.Buffer
+	r.XML(&data)
+	xmlBytes, err := sdk.Post(&data)
+	if err != nil {
+		sdk.logger.Fatalln(err)
+	}
+	var o SendSMSResponse
+	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
+		sdk.logger.Fatal(err)
+	}
+	o.JSON(os.Stdout)
+	return &o
 }
