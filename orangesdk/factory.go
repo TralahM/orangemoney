@@ -67,7 +67,7 @@ func BuildRequest(rt RType, jsonBytes []byte) Request {
 
 // BuildResponse is a helper function to quickly build Response objects
 func BuildResponse(rt RType, xmlBytes []byte) Response {
-	logger := log.New(os.Stdout, "drcorangefactory: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags,)
+	logger := log.New(os.Stdout, "drcorangefactory: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags)
 	logger.Println(rt.String(), string(xmlBytes))
 	switch rt {
 	case RTS2M:
@@ -75,6 +75,7 @@ func BuildResponse(rt RType, xmlBytes []byte) Response {
 		if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 			logger.Fatal(err)
 		}
+		logger.Println(o.JSON(os.Stdout))
 		return &o
 	case RTM2S:
 		var o DoM2SResponse
