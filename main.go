@@ -191,6 +191,16 @@ type DoCallback struct {
 	ResultDesc string `xml:"ResultDesc"`
 }
 
+// @title DRC Orange Money Proxy REST API
+// @version 1.0
+// @description This is a service for interacting with Oranges Money's DRC SOAP Integrated Payment Gateway.
+// @termsOfService https://github.com/TralahM
+// @contact.name API Support
+// @contact.email briantralah@gmail.com
+// @license.name GNU GENERAL PUBLIC LICENSE
+// @license.url http://www.gnu.org/licenses/
+// @host orange.betmondenge.com
+// @BasePath /
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)

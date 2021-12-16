@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   main.DoCallback:
     properties:
@@ -181,8 +182,19 @@ definitions:
       TransID:
         type: string
     type: object
+host: orange.betmondenge.com
 info:
-  contact: {}
+  contact:
+    email: briantralah@gmail.com
+    name: API Support
+  description: This is a service for interacting with Oranges Money's DRC SOAP Integrated
+    Payment Gateway.
+  license:
+    name: GNU GENERAL PUBLIC LICENSE
+    url: http://www.gnu.org/licenses/
+  termsOfService: https://github.com/TralahM
+  title: DRC Orange Money Proxy REST API
+  version: "1.0"
 paths:
   /api/v1/docallback:
     post:

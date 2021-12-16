@@ -18,7 +18,15 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "termsOfService": "https://github.com/TralahM",
+        "contact": {
+            "name": "API Support",
+            "email": "briantralah@gmail.com"
+        },
+        "license": {
+            "name": "GNU GENERAL PUBLIC LICENSE",
+            "url": "http://www.gnu.org/licenses/"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -581,12 +589,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "",
-	Host:        "",
-	BasePath:    "",
+	Version:     "1.0",
+	Host:        "orange.betmondenge.com",
+	BasePath:    "/",
 	Schemes:     []string{},
-	Title:       "",
-	Description: "",
+	Title:       "DRC Orange Money Proxy REST API",
+	Description: "This is a service for interacting with Oranges Money's DRC SOAP Integrated Payment Gateway.",
 }
 
 type s struct{}

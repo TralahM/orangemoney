@@ -1,8 +1,21 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "This is a service for interacting with Oranges Money's DRC SOAP Integrated Payment Gateway.",
+        "title": "DRC Orange Money Proxy REST API",
+        "termsOfService": "https://github.com/TralahM",
+        "contact": {
+            "name": "API Support",
+            "email": "briantralah@gmail.com"
+        },
+        "license": {
+            "name": "GNU GENERAL PUBLIC LICENSE",
+            "url": "http://www.gnu.org/licenses/"
+        },
+        "version": "1.0"
     },
+    "host": "orange.betmondenge.com",
+    "basePath": "/",
     "paths": {
         "/api/v1/docallback": {
             "post": {
