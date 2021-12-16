@@ -3,7 +3,6 @@ package orangesdk
 import (
 	"bytes"
 	"encoding/xml"
-	"os"
 )
 
 // RType defines a Request Type
@@ -83,7 +82,7 @@ func (sdk *APIClient) S2M(r Request) *DoS2MResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -99,7 +98,7 @@ func (sdk *APIClient) M2S(r Request) *DoM2SResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -115,7 +114,7 @@ func (sdk *APIClient) M2M(r Request) *DoM2MResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -131,7 +130,7 @@ func (sdk *APIClient) Callback(r Request) *DoCallbackResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -147,7 +146,7 @@ func (sdk *APIClient) CheckBal(r Request) *TcheckBalResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -163,7 +162,7 @@ func (sdk *APIClient) CheckTrans(r Request) *DoCheckTransResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
 
@@ -179,6 +178,6 @@ func (sdk *APIClient) SendSMS(r Request) *SendSMSResponse {
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
-	o.JSON(os.Stdout)
+	sdk.logger.Printf("%#v\n", o)
 	return &o
 }
