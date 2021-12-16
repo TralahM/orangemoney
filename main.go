@@ -22,9 +22,9 @@ var (
 	c2bCallbackUrl = getEnv("CLIENT_C2B_CALLBACK_URL", "https://c2b_vodacash/")
 	b2cCallbackUrl = getEnv("CLIENT_B2C_CALLBACK_URL", "https://b2c_vodacash/")
 	redisUrl       = getEnv("REDIS_URL", "localhost:6379")
-	remoteIPaddr   = getEnv("REMOTEIP", "41.77.223.184")
+	remoteIPaddr   = getEnv("REMOTEIP", "")
 	remotePortaddr = getEnv("REMOTEPORT", "8088")
-	authToken      = getEnv("AUTHTOKEN", "c0d9acb4-9e88-5030-83e2-456916dc25dr")
+	authToken      = getEnv("AUTHTOKEN", "")
 )
 
 // DoM2SResponse struct
@@ -229,7 +229,7 @@ func main() {
 	r.Post("/api/v1/docallback", handler.Docallback)
 	r.Post("/api/v1/dochecktrans", handler.DoCheckTrans)
 	r.Post("/api/v1/tcheckbal", handler.TcheckBal)
-	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("http://0.0.0.0:"+ServPort+"/swagger.json")))
+	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("https://orangeipg.drc.betmondenge.com"+"/swagger.json")))
 
 	handler.logger.Printf("Server starting on 0.0.0.0:%s\n", ServPort)
 
