@@ -31,75 +31,75 @@ var (
 // DoM2SResponse struct
 type DoM2SResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	SystemID   string `xml:"systemId"`
-	TransID    string `xml:"transId"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	SystemID   string `xml:"systemId" json:"SystemID"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // DoS2MResponse struct
 type DoS2MResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	SystemID   string `xml:"systemId"`
-	TransID    string `xml:"transId"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	SystemID   string `xml:"systemId" json:"SystemID"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // DoS2SResponse struct
 type DoS2SResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	SystemID   string `xml:"systemId"`
-	TransID    string `xml:"transId"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	SystemID   string `xml:"systemId" json:"SystemID"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // DoM2MResponse struct
 type DoM2MResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	SystemID   string `xml:"systemId"`
-	TransID    string `xml:"transId"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	SystemID   string `xml:"systemId" json:"SystemID"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // TcheckBalResponse struct
 type TcheckBalResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	Balance    string `xml:"balance"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	TransID    string `xml:"transId"`
+	Balance    string `xml:"balance" json:"Balance"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // DoCheckTransResponse struct
 type DoCheckTransResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	TransID    string `xml:"transId"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // DoCallbackResponse struct
 type DoCallbackResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
 }
 
 // SendSMSResponse struct
 type SendSMSResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	Message    string `xml:"message"`
-	Resultdesc string `xml:"resultdesc"`
-	Resutcode  string `xml:"resutcode"`
+	Message    string `xml:"message" json:"Message"`
+	Resultdesc string `xml:"resultdesc" json:"Resultdesc"`
+	Resutcode  string `xml:"resutcode" json:"Resutcode"`
 }
 
 // SendSMS Request struct

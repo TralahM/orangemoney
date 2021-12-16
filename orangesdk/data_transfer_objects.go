@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"io"
 	"log"
-	"os"
 )
 
 // Request interface is a Data Transfer Object interface
@@ -33,15 +32,14 @@ type DoM2S struct {
 
 // XML Writes the DoM2S struct info into xml
 func (data *DoM2S) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dom2s").Parse(m2sreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -77,15 +75,15 @@ func (r *m2SREQUEST) Dto() Request {
 // DoM2SResponse struct
 type DoM2SResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	SystemID   string `xml:"systemId"`
-	TransID    string `xml:"transId"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	SystemID   string `xml:"systemId" json:"SystemID"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoM2SResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoM2SResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -95,7 +93,7 @@ func (r *DoM2SResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *TcheckBalResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r TcheckBalResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -116,11 +114,11 @@ type m2sRESPONSE struct {
 			Ns2    string `xml:"ns2,attr"`
 			Return struct {
 				Text       string `xml:",chardata" json:"-"`
-				PartnID    string `xml:"partnId"`
-				ResultCode string `xml:"resultCode"`
-				ResultDesc string `xml:"resultDesc"`
-				SystemID   string `xml:"systemId"`
-				TransID    string `xml:"transId"`
+				PartnID    string `xml:"partnId" json:"PartnID"`
+				ResultCode string `xml:"resultCode" json:"ResultCode"`
+				ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+				SystemID   string `xml:"systemId" json:"SystemID"`
+				TransID    string `xml:"transId" json:"TransID"`
 			} `xml:"return"`
 		} `xml:"doM2SResponse"`
 	} `xml:"Body"`
@@ -141,15 +139,14 @@ type DoS2M struct {
 
 // XML Writes the DoS2M struct info into xml
 func (data *DoS2M) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dos2m").Parse(s2mreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -195,7 +192,7 @@ type DoS2MResponse struct {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoS2MResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoS2MResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -205,7 +202,7 @@ func (r *DoS2MResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoM2MResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoM2MResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -215,7 +212,7 @@ func (r *DoM2MResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoS2SResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoS2SResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -225,7 +222,7 @@ func (r *DoS2SResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoCallbackResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoCallbackResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -235,7 +232,7 @@ func (r *DoCallbackResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoCheckTransResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r DoCheckTransResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -245,7 +242,7 @@ func (r *DoCheckTransResponse) JSON(wr io.Writer) ([]byte, error) {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *SendSMSResponse) JSON(wr io.Writer) ([]byte, error) {
+func (r SendSMSResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
 		return nil, err
@@ -291,15 +288,14 @@ type DoS2S struct {
 
 // XML Writes the DoS2S struct info into xml
 func (data *DoS2S) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dos2s").Parse(s2sreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -379,15 +375,14 @@ type DoM2M struct {
 
 // XML Writes the DoM2M struct info into xml
 func (data *DoM2M) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dom2m").Parse(m2mreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -463,15 +458,14 @@ type TcheckBal struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *TcheckBal) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("tcheckbal").Parse(tcheckbalreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -505,11 +499,11 @@ func (r *cHECKBALANCEREQUEST) Dto() Request {
 // TcheckBalResponse struct
 type TcheckBalResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	Balance    string `xml:"balance"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	TransID    string `xml:"transId"`
+	Balance    string `xml:"balance" json:"Balance"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // checkbalanceRESPONSE struct
@@ -524,11 +518,11 @@ type checkbalanceRESPONSE struct {
 			Ns2    string `xml:"ns2,attr"`
 			Return struct {
 				Text       string `xml:",chardata" json:"-"`
-				Balance    string `xml:"balance"`
-				PartnID    string `xml:"partnId"`
-				ResultCode string `xml:"resultCode"`
-				ResultDesc string `xml:"resultDesc"`
-				TransID    string `xml:"transId"`
+				Balance    string `xml:"balance" json:"Balance"`
+				PartnID    string `xml:"partnId" json:"PartnID"`
+				ResultCode string `xml:"resultCode" json:"ResultCode"`
+				ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+				TransID    string `xml:"transId" json:"TransID"`
 			} `xml:"return"`
 		} `xml:"TcheckBalResponse"`
 	} `xml:"Body"`
@@ -544,15 +538,14 @@ type DoCheckTrans struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *DoCheckTrans) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("dochecktrans").Parse(checktransreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -585,9 +578,9 @@ func (r *cHECKTRANSACTIONSTATUSREQUEST) Dto() Request {
 // DoCheckTransResponse struct
 type DoCheckTransResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
-	TransID    string `xml:"transId"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+	TransID    string `xml:"transId" json:"TransID"`
 }
 
 // checktransactionstatusRESPONSE struct
@@ -602,9 +595,9 @@ type checktransactionstatusRESPONSE struct {
 			Ns2    string `xml:"ns2,attr"`
 			Return struct {
 				Text       string `xml:",chardata" json:"-"`
-				ResultCode string `xml:"resultCode"`
-				ResultDesc string `xml:"resultDesc"`
-				TransID    string `xml:"transId"`
+				ResultCode string `xml:"resultCode" json:"ResultCode"`
+				ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
+				TransID    string `xml:"transId" json:"TransID"`
 			} `xml:"return"`
 		} `xml:"doCheckTransResponse"`
 	} `xml:"Body"`
@@ -625,15 +618,14 @@ type DoCallback struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *DoCallback) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("docallback").Parse(callbackreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -671,9 +663,9 @@ func (r *cALLBACKURLREQUEST) Dto() Request {
 // DoCallbackResponse struct
 type DoCallbackResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	PartnID    string `xml:"partnId"`
-	ResultCode string `xml:"resultCode"`
-	ResultDesc string `xml:"resultDesc"`
+	PartnID    string `xml:"partnId" json:"PartnID"`
+	ResultCode string `xml:"resultCode" json:"ResultCode"`
+	ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
 }
 
 // callbackurlRESPONSE struct
@@ -688,9 +680,9 @@ type callbackurlRESPONSE struct {
 			Ns2    string `xml:"ns2,attr"`
 			Return struct {
 				Text       string `xml:",chardata" json:"-"`
-				PartnID    string `xml:"partnId"`
-				ResultCode string `xml:"resultCode"`
-				ResultDesc string `xml:"resultDesc"`
+				PartnID    string `xml:"partnId" json:"PartnID"`
+				ResultCode string `xml:"resultCode" json:"ResultCode"`
+				ResultDesc string `xml:"resultDesc" json:"ResultDesc"`
 			} `xml:"return"`
 		} `xml:"doCallbackResponse"`
 	} `xml:"Body"`
@@ -709,15 +701,14 @@ type SendSMS struct {
 
 // XML Writes the TcheckBal struct info into xml
 func (data *SendSMS) XML(wr io.Writer) error {
-	logger := log.New(os.Stdout, "drcorangedtos: ", log.Ldate|log.Ltime|log.Lshortfile)
 	t, err := template.New("sendsms").Parse(sendsmsreq)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	err = t.Execute(wr, data)
 	if err != nil {
-		logger.Fatal(err)
+		log.Fatal(err)
 		return err
 	}
 	return nil
@@ -753,9 +744,9 @@ func (r *sENDSMSREQUEST) Dto() Request {
 // SendSMSResponse struct
 type SendSMSResponse struct {
 	Text       string `xml:",chardata" json:"-"`
-	Message    string `xml:"message"`
-	Resultdesc string `xml:"resultdesc"`
-	Resutcode  string `xml:"resutcode"`
+	Message    string `xml:"message" json:"Message"`
+	Resultdesc string `xml:"resultdesc" json:"Resultdesc"`
+	Resutcode  string `xml:"resutcode" json:"Resultcode"`
 }
 
 // sendsmsRESPONSE struct
@@ -770,9 +761,9 @@ type sendsmsRESPONSE struct {
 			Ns2    string `xml:"ns2,attr"`
 			Return struct {
 				Text       string `xml:",chardata" json:"-"`
-				Message    string `xml:"message"`
-				Resultdesc string `xml:"resultdesc"`
-				Resutcode  string `xml:"resutcode"`
+				Message    string `xml:"message" json:"Message"`
+				Resultdesc string `xml:"resultdesc" json:"Resultdesc"`
+				Resutcode  string `xml:"resutcode" json:"Resultcode"`
 			} `xml:"return"`
 		} `xml:"sendSMSResponse"`
 	} `xml:"Body"`
@@ -827,41 +818,41 @@ func (r *m2mRESPONSE) Dro() Response {
 }
 
 // Type Reports the type of Request it is
-func (data DoS2M) Type() RType {
+func (r DoS2M) Type() RType {
 	return RTS2M
 }
 
 // Type Reports the type of Request it is
-func (data DoS2S) Type() RType {
+func (r DoS2S) Type() RType {
 	return RTS2S
 }
 
 // Type Reports the type of Request it is
-func (data DoM2M) Type() RType {
+func (r DoM2M) Type() RType {
 	return RTM2M
 }
 
 // Type Reports the type of Request it is
-func (data DoM2S) Type() RType {
+func (r DoM2S) Type() RType {
 	return RTM2S
 }
 
 // Type Reports the type of Request it is
-func (data DoCallback) Type() RType {
+func (r DoCallback) Type() RType {
 	return RTCBK
 }
 
 // Type Reports the type of Request it is
-func (data TcheckBal) Type() RType {
+func (r TcheckBal) Type() RType {
 	return RTCHKBAL
 }
 
 // Type Reports the type of Request it is
-func (data DoCheckTrans) Type() RType {
+func (r DoCheckTrans) Type() RType {
 	return RTCHKTXN
 }
 
 // Type Reports the type of Request it is
-func (data SendSMS) Type() RType {
+func (r SendSMS) Type() RType {
 	return RTSMS
 }
