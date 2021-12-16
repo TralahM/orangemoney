@@ -71,14 +71,14 @@ func (sdk *APIClient) Execute(r Request) Response {
 }
 
 // S2M performs a subscriber to merchant operation.
-func (sdk *APIClient) S2M(r Request) *DoS2MResponse {
+func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o DoS2MResponse
+	var o s2mRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -88,14 +88,14 @@ func (sdk *APIClient) S2M(r Request) *DoS2MResponse {
 }
 
 // M2S performs a merchant to subscriber operation.
-func (sdk *APIClient) M2S(r Request) *DoM2SResponse {
+func (sdk *APIClient) M2S(r Request) *m2sRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o DoM2SResponse
+	var o m2sRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -105,14 +105,14 @@ func (sdk *APIClient) M2S(r Request) *DoM2SResponse {
 }
 
 // M2M performs a merchant to merchant operation.
-func (sdk *APIClient) M2M(r Request) *DoM2MResponse {
+func (sdk *APIClient) M2M(r Request) *m2mRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o DoM2MResponse
+	var o m2mRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -122,14 +122,14 @@ func (sdk *APIClient) M2M(r Request) *DoM2MResponse {
 }
 
 // Callback performs a webservice callbackurl on a transaction.
-func (sdk *APIClient) Callback(r Request) *DoCallbackResponse {
+func (sdk *APIClient) Callback(r Request) *callbackurlRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o DoCallbackResponse
+	var o callbackurlRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -139,14 +139,14 @@ func (sdk *APIClient) Callback(r Request) *DoCallbackResponse {
 }
 
 // CheckBal checks the balance.
-func (sdk *APIClient) CheckBal(r Request) *TcheckBalResponse {
+func (sdk *APIClient) CheckBal(r Request) *checkbalanceRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o TcheckBalResponse
+	var o checkbalanceRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -156,14 +156,14 @@ func (sdk *APIClient) CheckBal(r Request) *TcheckBalResponse {
 }
 
 // CheckTrans checks the status of a completed transaction.
-func (sdk *APIClient) CheckTrans(r Request) *DoCheckTransResponse {
+func (sdk *APIClient) CheckTrans(r Request) *checktransactionstatusRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o DoCheckTransResponse
+	var o checktransactionstatusRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}
@@ -173,14 +173,14 @@ func (sdk *APIClient) CheckTrans(r Request) *DoCheckTransResponse {
 }
 
 // SendSMS send an sms message to a specified subscriber.
-func (sdk *APIClient) SendSMS(r Request) *SendSMSResponse {
+func (sdk *APIClient) SendSMS(r Request) *sendsmsRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
 	xmlBytes, err := sdk.Post(&data)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	var o SendSMSResponse
+	var o sendsmsRESPONSE
 	if err := xml.Unmarshal(xmlBytes, &o); err != nil {
 		sdk.logger.Fatal(err)
 	}

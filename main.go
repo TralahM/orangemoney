@@ -309,7 +309,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTS2M, body)
 	xreq := ipg.cli.S2M(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
@@ -331,7 +331,7 @@ func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCBK, body)
 	xreq := ipg.cli.Callback(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
@@ -353,7 +353,7 @@ func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKTXN, body)
 	xreq := ipg.cli.CheckTrans(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 }
 
 // TcheckBal godoc
@@ -374,7 +374,7 @@ func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKBAL, body)
 	xreq := ipg.cli.CheckBal(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
@@ -396,7 +396,7 @@ func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2S, body)
 	xreq := ipg.cli.M2S(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
@@ -418,7 +418,7 @@ func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2M, body)
 	xreq := ipg.cli.M2M(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
@@ -440,7 +440,7 @@ func (ipg *IpgHandler) SendSMS(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTSMS, body)
 	xreq := ipg.cli.SendSMS(rq)
-	ipg.respond(w, 202, xreq)
+	ipg.respond(w, 202, xreq.Dro())
 
 }
 
