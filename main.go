@@ -305,7 +305,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTS2M, body)
-	var xreq orangesdk.DoS2MResponse = ipg.cli.S2M(rq)
+	var xreq orangesdk.Response = ipg.cli.S2M(rq)
 	ipg.respond(w, 202, xreq)
 
 }

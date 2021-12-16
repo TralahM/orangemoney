@@ -69,11 +69,9 @@ func (sdk *APIClient) Execute(r Request) Response {
 }
 
 // S2M performs a subscriber to merchant operation.
-func (sdk *APIClient) S2M(r Request) DoS2MResponse {
-	var res DoS2MResponse
+func (sdk *APIClient) S2M(r Request) Response {
 	x := sdk.Execute(r)
-	res = x.(DoS2MResponse)
-	return res
+	return x
 }
 
 // M2S performs a merchant to subscriber operation.
