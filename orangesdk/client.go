@@ -67,7 +67,7 @@ type APIClient struct {
 
 // address returns the remote address of the orange money service.
 func (sdk *APIClient) address() string {
-	return "http://" + sdk.remoteIP + ":" + sdk.remotePort + "/apigatewayom/apigwomService"
+	return "https://" + sdk.remoteIP + ":" + sdk.remotePort + "/apigatewayom/apigwomService"
 }
 
 // Do to satisfy the http.Client interface.
