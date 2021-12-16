@@ -1,36 +1,3 @@
-This document and its content are strictly confidential. Any reproduction and / or distribution
-of this document or all or part of its contents to a third party are strictly prohibited
-
-
-This web services is developed according to the SOAP version 1.2 protocol (Simple Object Access
-Protocol) and is described by the following WSDL file:
- 
-http: // server_ip: port / apigatewayom / apigwomservice? wsdl
- 
-A SOAP message is contained in an envelope.
-The structure of a SOAP envelope is defined as follows:
- A header (header) it contains information about the processing of the message.
- a body (body) it contains the information of the query or the answer
- An error management contained in the body
- 
-3.2 Login to the Web Service
-
-## 3.2 Connection to the web service
-
-After subscription and creation of an account for a given partner, the parameters of
-following connections are provided to it.
-
-|Setting|Value|Comments|
-|-------|-------|------------|
-|TBD|Token|To be provided by Orange|
-|IP|TBD|IP of the web services|
-|TBD|PORT|Connection port|
-|URL|http://SERVER_IP:PORT/apigatewayom/apigwomService|Webservicepoint|
-
-Note: The Token must be added to the header (header) of each query before executing.
-The name of the header for the Token is: Authorization.
-This header (header) allows you to authenticate and secure customer exchanged data and the web service apigatewayom. IT must be transmitted systematically.
-
 ## 4.1 Execution of operations
 
 Each http (POST) request is sent in XML format.
