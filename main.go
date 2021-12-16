@@ -299,7 +299,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTS2M, body)
-	var xreq orangesdk.Response = ipg.cli.S2M(rq)
+	var xreq orangesdk.DoS2MResponse = ipg.cli.S2M(rq)
 	ipg.respond(w, 202, xreq)
 
 }
@@ -321,7 +321,7 @@ func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCBK, body)
-	var xreq orangesdk.Response = ipg.cli.Callback(rq)
+	var xreq orangesdk.DoCallbackResponse = ipg.cli.Callback(rq)
 	ipg.respond(w, 202, xreq)
 
 }
@@ -343,7 +343,7 @@ func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKTXN, body)
-	var xreq orangesdk.Response = ipg.cli.CheckTrans(rq)
+	var xreq orangesdk.DoCheckTransResponse = ipg.cli.CheckTrans(rq)
 	ipg.respond(w, 202, xreq)
 }
 
@@ -364,7 +364,7 @@ func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKBAL, body)
-	var xreq orangesdk.Response = ipg.cli.CheckBal(rq)
+	var xreq orangesdk.TcheckBalResponse = ipg.cli.CheckBal(rq)
 	ipg.respond(w, 202, xreq)
 
 }
@@ -386,7 +386,7 @@ func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2S, body)
-	var xreq orangesdk.Response = ipg.cli.M2S(rq)
+	var xreq orangesdk.DoM2SResponse = ipg.cli.M2S(rq)
 	ipg.respond(w, 202, xreq)
 
 }
@@ -408,7 +408,7 @@ func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2M, body)
-	var xreq orangesdk.Response = ipg.cli.M2M(rq)
+	var xreq orangesdk.DoM2MResponse = ipg.cli.M2M(rq)
 	ipg.respond(w, 202, xreq)
 
 }
