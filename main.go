@@ -277,6 +277,7 @@ func (ipg *IpgHandler) Swagger(w http.ResponseWriter, req *http.Request) {
 
 // respondJSON makes the json response with payload as json format.
 func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orangesdk.Response) {
+	w.Header().Set("Content-Type", "application/json;charset=utf8")
 	err := payload.JSON(w)
 	if err != nil {
 		ipg.logger.Fatalln(err)
@@ -284,7 +285,6 @@ func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orange
 		w.Write([]byte(err.Error()))
 		return
 	}
-	w.Header().Set("Content-Type", "application/json;charset=utf8")
 	w.WriteHeader(status)
 }
 
