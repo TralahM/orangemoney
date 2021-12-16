@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	ServPort       = getEnv("PORT", "8080")
+	ServPort       = getEnv("PORT", "8000")
 	c2bCallbackUrl = getEnv("CLIENT_C2B_CALLBACK_URL", "https://c2b_vodacash/")
 	b2cCallbackUrl = getEnv("CLIENT_B2C_CALLBACK_URL", "https://b2c_vodacash/")
 	redisUrl       = getEnv("REDIS_URL", "localhost:6379")
@@ -99,6 +99,17 @@ type SendSMSResponse struct {
 	Message    string `xml:"message"`
 	Resultdesc string `xml:"resultdesc"`
 	Resutcode  string `xml:"resutcode"`
+}
+
+// SendSMS Request struct
+type SendSMS struct {
+	Text      string `xml:",chardata" json:"-"`
+	Sender    string `xml:"sender"`
+	Msisdn    string `xml:"msisdn"`
+	Message   string `xml:"message"`
+	Flash     string `xml:"flash"`
+	PartnID   string `xml:"PartnId"`
+	PartnName string `xml:"PartnName"`
 }
 
 // DoS2M Request struct
@@ -244,7 +255,7 @@ type IpgHandler struct {
 
 // NewIpgHandler return an IpgHandler.
 func NewIpgHandler() *IpgHandler {
-	logger := log.New(os.Stdout, "drcorangeproxy: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags,)
+	logger := log.New(os.Stdout, "drcorangeproxy: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags)
 	cli := orangesdk.NewClient(authToken, remoteIPaddr, remotePortaddr)
 	return &IpgHandler{
 		logger: logger,
@@ -404,6 +415,28 @@ func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2M, body)
 	var xreq orangesdk.DoM2MResponse = ipg.cli.M2M(rq)
+	ipg.respond(w, 202, xreq)
+
+}
+
+// SendSMS godoc
+// @Summary Send an SMS
+// @Description Send an SMS to a Subscriber.
+// @Tags SendSMS
+// @Accept json
+// @Produce json
+// @Param payload body SendSMS true "SendSMS"
+// @Success 202 {object} SendSMSResponse
+// @Router /api/v1/sendsms [post]
+func (ipg *IpgHandler) SendSMS(w http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		ipg.logger.Printf("Error reading body: %v\n", err)
+		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
+		return
+	}
+	rq := orangesdk.BuildRequest(orangesdk.RTSMS, body)
+	var xreq orangesdk.SendSMSResponse = ipg.cli.SendSMS(rq)
 	ipg.respond(w, 202, xreq)
 
 }

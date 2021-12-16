@@ -133,6 +133,30 @@ definitions:
       transID:
         type: string
     type: object
+  main.SendSMS:
+    properties:
+      flash:
+        type: string
+      message:
+        type: string
+      msisdn:
+        type: string
+      partnID:
+        type: string
+      partnName:
+        type: string
+      sender:
+        type: string
+    type: object
+  main.SendSMSResponse:
+    properties:
+      message:
+        type: string
+      resultdesc:
+        type: string
+      resutcode:
+        type: string
+    type: object
   main.TcheckBal:
     properties:
       currency:
@@ -270,6 +294,28 @@ paths:
       summary: Do an S2M transaction.
       tags:
       - C2B
+  /api/v1/sendsms:
+    post:
+      consumes:
+      - application/json
+      description: Send an SMS to a Subscriber.
+      parameters:
+      - description: SendSMS
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/main.SendSMS'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/main.SendSMSResponse'
+      summary: Send an SMS
+      tags:
+      - SendSMS
   /api/v1/tcheckbal:
     post:
       consumes:

@@ -115,3 +115,11 @@ func (sdk *APIClient) CheckTrans(r Request) DoCheckTransResponse {
 	res = x.(DoCheckTransResponse)
 	return res
 }
+
+// SendSMS send an sms message to a specified subscriber.
+func (sdk *APIClient) SendSMS(r Request) SendSMSResponse {
+	var res SendSMSResponse
+	x := sdk.Execute(r)
+	res = x.(SendSMSResponse)
+	return res
+}

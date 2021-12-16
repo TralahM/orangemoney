@@ -194,6 +194,40 @@ var doc = `{
                 }
             }
         },
+        "/api/v1/sendsms": {
+            "post": {
+                "description": "Send an SMS to a Subscriber.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SendSMS"
+                ],
+                "summary": "Send an SMS",
+                "parameters": [
+                    {
+                        "description": "SendSMS",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.SendSMS"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/main.SendSMSResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/tcheckbal": {
             "post": {
                 "description": "Check the balance of a specified account.",
@@ -455,6 +489,43 @@ var doc = `{
                     "type": "string"
                 },
                 "transID": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.SendSMS": {
+            "type": "object",
+            "properties": {
+                "flash": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "msisdn": {
+                    "type": "string"
+                },
+                "partnID": {
+                    "type": "string"
+                },
+                "partnName": {
+                    "type": "string"
+                },
+                "sender": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.SendSMSResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "resultdesc": {
+                    "type": "string"
+                },
+                "resutcode": {
                     "type": "string"
                 }
             }
