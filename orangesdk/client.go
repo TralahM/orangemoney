@@ -95,15 +95,14 @@ func (sdk *APIClient) Post(data io.Reader) ([]byte, error) {
 }
 
 // NewClient returns a new APIClient
-func NewClient(authToken, partnerID, partnerName, merchantMSISDN, remoteIP, remotePort string) *APIClient {
-	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile)
+func NewClient(authToken, remoteIP, remotePort string) *APIClient {
+	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags)
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
 	return &APIClient{
-		token: authToken, partnID: partnerID,
-		partnName: partnerName, mermsisdn: merchantMSISDN,
+		token:    authToken,
 		remoteIP: remoteIP, remotePort: remotePort,
 		logger: logger,
 		cli: Decorate(

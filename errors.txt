@@ -1,5 +1,0 @@
-"http://41.77.222.184:8088/apigatewayom/apigwomService": dial tcp 41.77.222.184:8088: i/o timeout
-41.77.223.184
-
-
-"https://41.77.223.184:8088/apigatewayom/apigwomService": x509: cannot validate certificate for 41.77.223.184 because it doesn't contain any IP SANs

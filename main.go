@@ -18,12 +18,13 @@ import (
 )
 
 var (
-	ServPort       = getEnv("PORT", "8000")
+	ServPort       = getEnv("PORT", "8080")
 	c2bCallbackUrl = getEnv("CLIENT_C2B_CALLBACK_URL", "https://c2b_vodacash/")
 	b2cCallbackUrl = getEnv("CLIENT_B2C_CALLBACK_URL", "https://b2c_vodacash/")
 	redisUrl       = getEnv("REDIS_URL", "localhost:6379")
-	internalC2B    = "https://ipg.betmondenge.com/api/v1/c2b_callback"
-	internalB2C    = "https://ipg.betmondenge.com/api/v1/b2c_callback"
+	remoteIPaddr   = getEnv("REMOTEIP", "41.77.223.184")
+	remotePortaddr = getEnv("REMOTEPORT", "8088")
+	authToken      = getEnv("AUTHTOKEN", "c0d9acb4-9e88-5030-83e2-456916dc25dr")
 )
 
 // DoM2SResponse struct
@@ -217,12 +218,6 @@ func main() {
 	r.Post("/api/v1/docallback", handler.Docallback)
 	r.Post("/api/v1/dochecktrans", handler.DoCheckTrans)
 	r.Post("/api/v1/tcheckbal", handler.TcheckBal)
-	// r.Post("/api/v1/b2c", handler.B2C)
-	// r.Post("/api/v1/vodacash_c2b_callback", handler.C2BCallback)
-	// r.Post("/api/v1/vodacash_b2c_callback", handler.B2CCallback)
-	// r.Post("/api/v1/c2b_callback", handler.C2BCallback)
-	// r.Post("/api/v1/b2c_callback", handler.B2CCallback)
-	// r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("https://raw.githubusercontent.com/tralahm/drcmpesaproxy/master/docs/swagger.json"))) // url pointing to api definition
 	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("http://0.0.0.0:"+ServPort+"/swagger.json")))
 
 	handler.logger.Printf("Server starting on 0.0.0.0:%s\n", ServPort)
@@ -249,8 +244,8 @@ type IpgHandler struct {
 
 // NewIpgHandler return an IpgHandler.
 func NewIpgHandler() *IpgHandler {
-	logger := log.New(os.Stdout, "drcorangeproxy: ", log.Ldate|log.Ltime|log.Lshortfile)
-	cli := orangesdk.NewClient("Bearer c0d9acb4-9e88-5030-83e2-456916dc25dr", "1182", "GLORESVENT", "0896643349", "41.77.223.184", "8088")
+	logger := log.New(os.Stdout, "drcorangeproxy: ", log.Ldate|log.Ltime|log.Lshortfile|log.LstdFlags,)
+	cli := orangesdk.NewClient(authToken, remoteIPaddr, remotePortaddr)
 	return &IpgHandler{
 		logger: logger,
 		cli:    cli,
