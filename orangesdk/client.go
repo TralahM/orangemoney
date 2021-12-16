@@ -1,4 +1,4 @@
-// Orange Money Golang SDK.
+// Package orangesdk Orange Money Golang SDK.
 //
 // http://SERVER_IP:PORT/apigatewayom/apigwomService
 //

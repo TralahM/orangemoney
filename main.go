@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -278,7 +279,9 @@ func (ipg *IpgHandler) Swagger(w http.ResponseWriter, req *http.Request) {
 // respond makes the json response with payload as json format.
 func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orangesdk.Response) {
 	w.Header().Set("Content-Type", "application/json;charset=utf8")
-	err := payload.JSON(w)
+	var t bytes.Buffer
+	data, err := payload.JSON(&t)
+	w.Write([]byte(data))
 	if err != nil {
 		ipg.logger.Fatalln(err)
 		w.WriteHeader(http.StatusInternalServerError)

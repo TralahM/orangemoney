@@ -9,6 +9,7 @@ import (
 // RType defines a Request Type
 type RType int
 
+// Constants
 const (
 	RTS2M RType = iota
 	RTM2S

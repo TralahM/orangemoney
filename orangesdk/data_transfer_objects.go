@@ -17,7 +17,7 @@ type Request interface {
 
 // Response interface is a Data Return Object interface
 type Response interface {
-	JSON(io.Writer) error
+	JSON(io.Writer) ([]byte, error)
 }
 
 // DoM2S payload Merchant To Subscriber
@@ -85,23 +85,23 @@ type DoM2SResponse struct {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoM2SResponse) JSON(wr io.Writer) error {
+func (r *DoM2SResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *TcheckBalResponse) JSON(wr io.Writer) error {
+func (r *TcheckBalResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // m2sRESPONSE struct
@@ -195,63 +195,63 @@ type DoS2MResponse struct {
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoS2MResponse) JSON(wr io.Writer) error {
+func (r *DoS2MResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoM2MResponse) JSON(wr io.Writer) error {
+func (r *DoM2MResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoS2SResponse) JSON(wr io.Writer) error {
+func (r *DoS2SResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoCallbackResponse) JSON(wr io.Writer) error {
+func (r *DoCallbackResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *DoCheckTransResponse) JSON(wr io.Writer) error {
+func (r *DoCheckTransResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // JSON writes to the writer the json string of the object.
-func (r *SendSMSResponse) JSON(wr io.Writer) error {
+func (r *SendSMSResponse) JSON(wr io.Writer) ([]byte, error) {
 	out, err := json.MarshalIndent(r, " ", "  ")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	wr.Write(out)
-	return nil
+	return out, nil
 }
 
 // s2mRESPONSE struct
@@ -827,41 +827,41 @@ func (r *m2mRESPONSE) Dro() Response {
 }
 
 // Type Reports the type of Request it is
-func (r DoS2M) Type() RType {
+func (data DoS2M) Type() RType {
 	return RTS2M
 }
 
 // Type Reports the type of Request it is
-func (r DoS2S) Type() RType {
+func (data DoS2S) Type() RType {
 	return RTS2S
 }
 
 // Type Reports the type of Request it is
-func (r DoM2M) Type() RType {
+func (data DoM2M) Type() RType {
 	return RTM2M
 }
 
 // Type Reports the type of Request it is
-func (r DoM2S) Type() RType {
+func (data DoM2S) Type() RType {
 	return RTM2S
 }
 
 // Type Reports the type of Request it is
-func (r DoCallback) Type() RType {
+func (data DoCallback) Type() RType {
 	return RTCBK
 }
 
 // Type Reports the type of Request it is
-func (r TcheckBal) Type() RType {
+func (data TcheckBal) Type() RType {
 	return RTCHKBAL
 }
 
 // Type Reports the type of Request it is
-func (r DoCheckTrans) Type() RType {
+func (data DoCheckTrans) Type() RType {
 	return RTCHKTXN
 }
 
 // Type Reports the type of Request it is
-func (r SendSMS) Type() RType {
+func (data SendSMS) Type() RType {
 	return RTSMS
 }
