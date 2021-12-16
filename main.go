@@ -291,7 +291,6 @@ func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orange
 	w.Header().Set("Content-Type", "application/json;charset=utf8")
 	var t bytes.Buffer
 	data, err := payload.JSON(&t)
-	w.Write([]byte(data))
 	if err != nil {
 		ipg.logger.Fatalln(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -299,6 +298,7 @@ func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orange
 		return
 	}
 	w.WriteHeader(status)
+	w.Write([]byte(data))
 }
 
 // Dos2m godoc
@@ -319,7 +319,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTS2M, body)
 	xreq := ipg.cli.S2M(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
@@ -341,7 +341,7 @@ func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCBK, body)
 	xreq := ipg.cli.Callback(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
@@ -363,7 +363,7 @@ func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKTXN, body)
 	xreq := ipg.cli.CheckTrans(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 }
 
 // TcheckBal godoc
@@ -384,7 +384,7 @@ func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTCHKBAL, body)
 	xreq := ipg.cli.CheckBal(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
@@ -406,7 +406,7 @@ func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2S, body)
 	xreq := ipg.cli.M2S(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
@@ -428,7 +428,7 @@ func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTM2M, body)
 	xreq := ipg.cli.M2M(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
@@ -450,7 +450,7 @@ func (ipg *IpgHandler) SendSMS(w http.ResponseWriter, req *http.Request) {
 	}
 	rq := orangesdk.BuildRequest(orangesdk.RTSMS, body)
 	xreq := ipg.cli.SendSMS(rq)
-	ipg.respond(w, 202, xreq.Dro())
+	ipg.respond(w, http.StatusAccepted, xreq.Dro())
 
 }
 
