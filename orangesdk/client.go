@@ -9,6 +9,7 @@
 package orangesdk
 
 import (
+	"crypto/tls"
 	"io"
 	"io/ioutil"
 	"log"
@@ -96,13 +97,17 @@ func (sdk *APIClient) Post(data io.Reader) ([]byte, error) {
 // NewClient returns a new APIClient
 func NewClient(authToken, partnerID, partnerName, merchantMSISDN, remoteIP, remotePort string) *APIClient {
 	logger := log.New(os.Stdout, "drcorangeclient: ", log.Ldate|log.Ltime|log.Lshortfile)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
 	return &APIClient{
 		token: authToken, partnID: partnerID,
 		partnName: partnerName, mermsisdn: merchantMSISDN,
 		remoteIP: remoteIP, remotePort: remotePort,
 		logger: logger,
 		cli: Decorate(
-			http.DefaultClient,
+			client,
 			Header("Accept", "application/xml,text/xml"),
 			Header("Authorization", "Bearer "+authToken),
 		),
