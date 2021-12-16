@@ -299,13 +299,13 @@
         "main.DoCallbackResponse": {
             "type": "object",
             "properties": {
-                "partnID": {
+                "PartnID": {
                     "type": "string"
                 },
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 }
             }
@@ -327,13 +327,13 @@
         "main.DoCheckTransResponse": {
             "type": "object",
             "properties": {
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 },
-                "transID": {
+                "TransID": {
                     "type": "string"
                 }
             }
@@ -364,19 +364,19 @@
         "main.DoM2MResponse": {
             "type": "object",
             "properties": {
-                "partnID": {
+                "PartnID": {
                     "type": "string"
                 },
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 },
-                "systemID": {
+                "SystemID": {
                     "type": "string"
                 },
-                "transID": {
+                "TransID": {
                     "type": "string"
                 }
             }
@@ -407,19 +407,19 @@
         "main.DoM2SResponse": {
             "type": "object",
             "properties": {
-                "partnID": {
+                "PartnID": {
                     "type": "string"
                 },
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 },
-                "systemID": {
+                "SystemID": {
                     "type": "string"
                 },
-                "transID": {
+                "TransID": {
                     "type": "string"
                 }
             }
@@ -456,19 +456,19 @@
         "main.DoS2MResponse": {
             "type": "object",
             "properties": {
-                "partnID": {
+                "PartnID": {
                     "type": "string"
                 },
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 },
-                "systemID": {
+                "SystemID": {
                     "type": "string"
                 },
-                "transID": {
+                "TransID": {
                     "type": "string"
                 }
             }
@@ -499,13 +499,13 @@
         "main.SendSMSResponse": {
             "type": "object",
             "properties": {
-                "message": {
+                "Message": {
                     "type": "string"
                 },
-                "resultdesc": {
+                "Resultdesc": {
                     "type": "string"
                 },
-                "resutcode": {
+                "Resutcode": {
                     "type": "string"
                 }
             }
@@ -530,19 +530,19 @@
         "main.TcheckBalResponse": {
             "type": "object",
             "properties": {
-                "balance": {
+                "Balance": {
                     "type": "string"
                 },
-                "partnID": {
+                "PartnID": {
                     "type": "string"
                 },
-                "resultCode": {
+                "ResultCode": {
                     "type": "string"
                 },
-                "resultDesc": {
+                "ResultDesc": {
                     "type": "string"
                 },
-                "transID": {
+                "TransID": {
                     "type": "string"
                 }
             }

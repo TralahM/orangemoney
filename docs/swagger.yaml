@@ -20,11 +20,11 @@ definitions:
     type: object
   main.DoCallbackResponse:
     properties:
-      partnID:
+      PartnID:
         type: string
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
     type: object
   main.DoCheckTrans:
@@ -38,11 +38,11 @@ definitions:
     type: object
   main.DoCheckTransResponse:
     properties:
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
-      transID:
+      TransID:
         type: string
     type: object
   main.DoM2M:
@@ -62,15 +62,15 @@ definitions:
     type: object
   main.DoM2MResponse:
     properties:
-      partnID:
+      PartnID:
         type: string
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
-      systemID:
+      SystemID:
         type: string
-      transID:
+      TransID:
         type: string
     type: object
   main.DoM2S:
@@ -90,15 +90,15 @@ definitions:
     type: object
   main.DoM2SResponse:
     properties:
-      partnID:
+      PartnID:
         type: string
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
-      systemID:
+      SystemID:
         type: string
-      transID:
+      TransID:
         type: string
     type: object
   main.DoS2M:
@@ -122,15 +122,15 @@ definitions:
     type: object
   main.DoS2MResponse:
     properties:
-      partnID:
+      PartnID:
         type: string
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
-      systemID:
+      SystemID:
         type: string
-      transID:
+      TransID:
         type: string
     type: object
   main.SendSMS:
@@ -150,11 +150,11 @@ definitions:
     type: object
   main.SendSMSResponse:
     properties:
-      message:
+      Message:
         type: string
-      resultdesc:
+      Resultdesc:
         type: string
-      resutcode:
+      Resutcode:
         type: string
     type: object
   main.TcheckBal:
@@ -170,15 +170,15 @@ definitions:
     type: object
   main.TcheckBalResponse:
     properties:
-      balance:
+      Balance:
         type: string
-      partnID:
+      PartnID:
         type: string
-      resultCode:
+      ResultCode:
         type: string
-      resultDesc:
+      ResultDesc:
         type: string
-      transID:
+      TransID:
         type: string
     type: object
 info:
