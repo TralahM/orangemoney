@@ -68,7 +68,7 @@ var doc = `{
         },
         "/api/v1/dochecktrans": {
             "post": {
-                "description": "Check the balance of a specified account.",
+                "description": "Check the status of a completed transaction.",
                 "consumes": [
                     "application/json"
                 ],
@@ -78,7 +78,7 @@ var doc = `{
                 "tags": [
                     "CheckTransaction"
                 ],
-                "summary": "Do a Check Balance transaction.",
+                "summary": "Check the status of a completed transaction.",
                 "parameters": [
                     {
                         "description": "DoCheckTrans",

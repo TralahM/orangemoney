@@ -346,8 +346,8 @@ func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 }
 
 // DoCheckTrans godoc
-// @Summary Do a Check Balance transaction.
-// @Description Check the balance of a specified account.
+// @Summary Check the status of a completed transaction.
+// @Description Check the status of a completed transaction.
 // @Tags CheckTransaction
 // @Accept json
 // @Produce json

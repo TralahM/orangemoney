@@ -222,7 +222,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Check the balance of a specified account.
+      description: Check the status of a completed transaction.
       parameters:
       - description: DoCheckTrans
         in: body
@@ -237,7 +237,7 @@ paths:
           description: Accepted
           schema:
             $ref: '#/definitions/main.DoCheckTransResponse'
-      summary: Do a Check Balance transaction.
+      summary: Check the status of a completed transaction.
       tags:
       - CheckTransaction
   /api/v1/dom2m:
