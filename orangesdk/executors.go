@@ -63,7 +63,7 @@ func (f ExecutorFunc) Execute(r Request) Response {
 func (sdk *APIClient) Execute(r Request) Response {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -76,7 +76,7 @@ func (sdk *APIClient) Execute(r Request) Response {
 func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -95,7 +95,7 @@ func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 func (sdk *APIClient) M2S(r Request) *m2sRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -114,7 +114,7 @@ func (sdk *APIClient) M2S(r Request) *m2sRESPONSE {
 func (sdk *APIClient) M2M(r Request) *m2mRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -133,7 +133,7 @@ func (sdk *APIClient) M2M(r Request) *m2mRESPONSE {
 func (sdk *APIClient) Callback(r Request) *callbackurlRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -152,7 +152,7 @@ func (sdk *APIClient) Callback(r Request) *callbackurlRESPONSE {
 func (sdk *APIClient) CheckBal(r Request) *checkbalanceRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -171,7 +171,7 @@ func (sdk *APIClient) CheckBal(r Request) *checkbalanceRESPONSE {
 func (sdk *APIClient) CheckTrans(r Request) *checktransactionstatusRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
@@ -190,7 +190,7 @@ func (sdk *APIClient) CheckTrans(r Request) *checktransactionstatusRESPONSE {
 func (sdk *APIClient) SendSMS(r Request) *sendsmsRESPONSE {
 	var data bytes.Buffer
 	r.XML(&data)
-	sdk.logger.Println(data)
+	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
 	sdk.logger.Println(xmlBytes)
 	if err != nil {
