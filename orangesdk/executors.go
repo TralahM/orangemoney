@@ -65,7 +65,7 @@ func (sdk *APIClient) Execute(r Request) Response {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -78,7 +78,7 @@ func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -97,7 +97,7 @@ func (sdk *APIClient) M2S(r Request) *m2sRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -116,7 +116,7 @@ func (sdk *APIClient) M2M(r Request) *m2mRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -135,7 +135,7 @@ func (sdk *APIClient) Callback(r Request) *callbackurlRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -154,7 +154,7 @@ func (sdk *APIClient) CheckBal(r Request) *checkbalanceRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -173,7 +173,7 @@ func (sdk *APIClient) CheckTrans(r Request) *checktransactionstatusRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
@@ -192,7 +192,7 @@ func (sdk *APIClient) SendSMS(r Request) *sendsmsRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-	sdk.logger.Println(xmlBytes)
+
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}

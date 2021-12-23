@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Body>
+		<ns2:doS2MResponse xmlns:ns2="http://services.ws1.com/">
+			<return>
+				<resultCode>704</resultCode>
+				<resultDesc>TransId INCORRECT</resultDesc>
+			</return>
+		</ns2:doS2MResponse>
+	</S:Body>
+</S:Envelope>
