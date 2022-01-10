@@ -334,6 +334,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 // @Router /api/v1/docallback [post]
 func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
+	ipg.logger.Println(string(body))
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
