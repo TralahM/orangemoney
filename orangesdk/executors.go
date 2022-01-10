@@ -78,7 +78,6 @@ func (sdk *APIClient) S2M(r Request) *s2mRESPONSE {
 	r.XML(&data)
 	sdk.logger.Println(data.String())
 	xmlBytes, err := sdk.Post(&data)
-
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
