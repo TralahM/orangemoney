@@ -234,6 +234,9 @@ func main() {
 	// r.Get("/api/v1/health", handler.Health)
 	r.Get("/swagger.json", handler.Swagger)
 	// r.Get("/api/v1/ready", handler.Ready)
+	r.Get("/", func(writer http.ResponseWriter, req *http.Request) {
+		http.Redirect(writer, req, "https://orangeipg.drc.betmondenge.com/swagger/index.html", http.StatusMovedPermanently)
+	})
 	r.Post("/api/v1/dos2m", handler.Dos2m)
 	r.Post("/api/v1/dom2m", handler.Dom2m)
 	r.Post("/api/v1/dom2s", handler.Dom2s)
