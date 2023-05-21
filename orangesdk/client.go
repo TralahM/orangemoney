@@ -5,7 +5,6 @@
 // https://cdf.rdc.orange-money.com/tango/
 //
 // https://usd.rdc.orange-money.com/tango/
-//
 package orangesdk
 
 import (
@@ -107,7 +106,7 @@ func NewClient(authToken, remoteIP, remotePort string) *APIClient {
 		logger: logger,
 		cli: Decorate(
 			client,
-			Header("Accept", "application/xml,text/xml"),
+			Header("Accept", "application/xml,text/xml,text/plain,*/*"),
 			Header("Authorization", "Bearer "+authToken),
 		),
 	}
