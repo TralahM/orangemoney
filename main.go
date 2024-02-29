@@ -26,8 +26,7 @@ var (
 	remoteIPaddr   = getEnv("REMOTEIP", "")
 	remotePortaddr = getEnv("REMOTEPORT", "8088")
 	authToken      = getEnv("AUTHTOKEN", "")
-	swaggerUrl     = getEnv("SWAGGER_URL", "/swagger.json")
-	swaggerIndex   = getEnv("SWAGGER_INDEX", "https://xx.com/swagger/index.html")
+	serverRootUrl  = getEnv("ROOTURL", "http://localhost:8080")
 )
 
 // DoM2SResponse struct
@@ -237,7 +236,7 @@ func main() {
 	r.Get("/swagger.json", handler.Swagger)
 	// r.Get("/api/v1/ready", handler.Ready)
 	r.Get("/", func(writer http.ResponseWriter, req *http.Request) {
-		http.Redirect(writer, req, swaggerIndex, http.StatusMovedPermanently)
+		http.Redirect(writer, req, serverRootUrl+"/docs/index.html", http.StatusMovedPermanently)
 	})
 	r.Post("/api/v1/dos2m", handler.Dos2m)
 	r.Post("/api/v1/dom2m", handler.Dom2m)
@@ -245,7 +244,7 @@ func main() {
 	r.Post("/api/v1/docallback", handler.Docallback)
 	r.Post("/api/v1/dochecktrans", handler.DoCheckTrans)
 	r.Post("/api/v1/tcheckbal", handler.TcheckBal)
-	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL(swaggerUrl)))
+	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL(serverRootUrl+"/swagger.json")))
 
 	handler.logger.Printf("Server starting on 0.0.0.0:%s\n", ServPort)
 
