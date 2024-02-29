@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -19,13 +19,15 @@ import (
 )
 
 var (
-	ServPort       = getEnv("PORT", "8000")
+	ServPort       = getEnv("PORT", "8080")
 	c2bCallbackUrl = getEnv("CLIENT_C2B_CALLBACK_URL", "https://c2b_vodacash/")
 	b2cCallbackUrl = getEnv("CLIENT_B2C_CALLBACK_URL", "https://b2c_vodacash/")
 	redisUrl       = getEnv("REDIS_URL", "localhost:6379")
 	remoteIPaddr   = getEnv("REMOTEIP", "")
 	remotePortaddr = getEnv("REMOTEPORT", "8088")
 	authToken      = getEnv("AUTHTOKEN", "")
+	swaggerUrl     = getEnv("SWAGGER_URL", "/swagger.json")
+	swaggerIndex   = getEnv("SWAGGER_INDEX", "https://xx.com/swagger/index.html")
 )
 
 // DoM2SResponse struct
@@ -235,7 +237,7 @@ func main() {
 	r.Get("/swagger.json", handler.Swagger)
 	// r.Get("/api/v1/ready", handler.Ready)
 	r.Get("/", func(writer http.ResponseWriter, req *http.Request) {
-		http.Redirect(writer, req, "https://orangeipg.drc.betmondenge.com/swagger/index.html", http.StatusMovedPermanently)
+		http.Redirect(writer, req, swaggerIndex, http.StatusMovedPermanently)
 	})
 	r.Post("/api/v1/dos2m", handler.Dos2m)
 	r.Post("/api/v1/dom2m", handler.Dom2m)
@@ -243,7 +245,7 @@ func main() {
 	r.Post("/api/v1/docallback", handler.Docallback)
 	r.Post("/api/v1/dochecktrans", handler.DoCheckTrans)
 	r.Post("/api/v1/tcheckbal", handler.TcheckBal)
-	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("https://orangeipg.drc.betmondenge.com"+"/swagger.json")))
+	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL(swaggerUrl)))
 
 	handler.logger.Printf("Server starting on 0.0.0.0:%s\n", ServPort)
 
@@ -314,7 +316,7 @@ func (ipg *IpgHandler) respond(w http.ResponseWriter, status int, payload orange
 // @Success 202 {object} DoS2MResponse
 // @Router /api/v1/dos2m [post]
 func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
@@ -336,7 +338,7 @@ func (ipg *IpgHandler) Dos2m(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} DoCallbackResponse
 // @Router /api/v1/docallback [post]
 func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	ipg.logger.Println(string(body))
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
@@ -359,7 +361,7 @@ func (ipg *IpgHandler) Docallback(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} DoCheckTransResponse
 // @Router /api/v1/dochecktrans [post]
 func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
@@ -380,7 +382,7 @@ func (ipg *IpgHandler) DoCheckTrans(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} TcheckBalResponse
 // @Router /api/v1/tcheckbal [post]
 func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
@@ -402,7 +404,7 @@ func (ipg *IpgHandler) TcheckBal(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} DoM2SResponse
 // @Router /api/v1/dom2s [post]
 func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
@@ -424,7 +426,7 @@ func (ipg *IpgHandler) Dom2s(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} DoM2MResponse
 // @Router /api/v1/dom2m [post]
 func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
@@ -446,7 +448,7 @@ func (ipg *IpgHandler) Dom2m(w http.ResponseWriter, req *http.Request) {
 // @Success 202 {object} SendSMSResponse
 // @Router /api/v1/sendsms [post]
 func (ipg *IpgHandler) SendSMS(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
+	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		ipg.logger.Printf("Error reading body: %v\n", err)
 		ipg.respondError(w, http.StatusBadRequest, string([]byte(err.Error())))
