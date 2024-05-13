@@ -10,7 +10,6 @@ package orangesdk
 import (
 	"crypto/tls"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -86,7 +85,7 @@ func (sdk *APIClient) Post(data io.Reader) ([]byte, error) {
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
-	resbytes, err := ioutil.ReadAll(resp.Body)
+	resbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		sdk.logger.Fatalln(err)
 	}
